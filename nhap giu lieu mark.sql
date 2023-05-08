@@ -33,4 +33,21 @@ VALUES (1, 1, 8, 1),
        (1, 2, 10, 2),
        (2, 1, 12, 1);
        
+       -- truy van --
+       select * from subject 
+       where credit<10;
+       
+       select s.studentID, s.studentName, c.className
+       from student s join class c on s.classid =  c.classID;
+       
+       select s.studentID, s.studentName, c.className
+       from student s join class c on s.classID = c.classID
+       where c.className = 'A1';
+       
+       select s.studentID, s.studentName, sub.subName, m.mark
+       from student s join mark m on s.studentID = m.studentID join subject sub on m.subID = sub.subID;
+       
+       select s.studentID, s.studentName, sub.subName, m.mark
+       from student s join mark m on s.studentID = m.studentID join subject sub on m.subID = sub.subID
+       where sub.subName='CF';
        
