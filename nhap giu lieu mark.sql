@@ -51,3 +51,23 @@ VALUES (1, 1, 8, 1),
        from student s join mark m on s.studentID = m.studentID join subject sub on m.subID = sub.subID
        where sub.subName='CF';
        
+       -- Hiển thị tất cả các sinh viên có tên bắt đầu bảng ký tự ‘h’--
+       select student.studentid,student.studentName from quanli.student
+       where studentName like "h%";
+       
+       -- Hiển thị các thông tin lớp học có thời gian bắt đầu vào tháng 12 --
+       select class.classID,class.className,class.startTime from quanli.class
+       where month(starttime)=12; 
+       
+       -- Hiển thị tất cả các thông tin môn học có credit trong khoảng từ 3-5 --
+       select subject.subname, subject.credit from quanli.subject
+       where credit between 3 and 5;
+       
+       -- Thay đổi mã lớp(ClassID) của sinh viên có tên ‘Hung’ là 2.--
+       update student set classid =2
+       where studentName="Hung";
+       
+       -- Hiển thị các thông tin: StudentName, SubName, Mark. Dữ liệu sắp xếp theo điểm thi (mark) giảm dần. nếu trùng sắp theo tên tăng dần
+       select s.studentName,sub.subName, m.mark 
+       from student s join mark m on s.studentID = m.studentid join subject sub on m.subID= sub.subId
+       order by m.mark desc, s.studentName desc;
