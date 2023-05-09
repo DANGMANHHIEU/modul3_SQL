@@ -31,4 +31,24 @@ foreign key(studentID) references student(studentID),
 mark float default 0 check ( mark between 0 and 100),
 examTimes tinyint default 1);
 
+-- hiển thị sinh viên ở từng nơi --
+select address, count(studentID) as ' số lượng học viên'
+from student
+group by address;
+ 
+ -- tính điểm trung bình các môn học của mỗi học viên --
+ select s.studentID, s.studentName, avg(mark)
+ from student s join mark m on s.studentID = m.studentID
+ group by studentID,studentName;
 
+-- Hiển thị những bạn học viên co điểm trung bình các môn học lớn hơn 15 --
+select s.studentID, s.studentName , avg(mark)
+from student s join mark m on s.studentID = m.studentID
+group by studentID,studentName
+having avg(mark)>15;
+
+-- hiển thị thông tin học viên có điểm trung bình  lớn nhất --
+select s.studentID,s.studentName, avg(mark)
+from student s join mark m on s.studentID = m.studentID
+group by studentID, studentName
+having avg(mark) >= all (select avg(mark) from mark group by mark.studentID);
